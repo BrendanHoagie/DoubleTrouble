@@ -35,6 +35,7 @@ public class Player {
                 System.out.println("Not a valid row, choose again");
             }
         }
+
         int numTaken = 0;
         Boolean takenGood = false;
         while(!takenGood){
@@ -43,6 +44,8 @@ public class Player {
             if(chosenRowNum == 1){
                 if(numWanted > board.getRowOne()){
                     System.out.println("That's more than are in the row, pick again");
+                } else if(numWanted == 0){
+                    System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
                     takenGood = true;
@@ -50,6 +53,8 @@ public class Player {
             } else if(chosenRowNum == 2){
                 if(numWanted > board.getRowTwo()){
                     System.out.println("That's more than are in the row, pick again");
+                } else if(numWanted == 0){
+                    System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
                     takenGood = true;
@@ -57,6 +62,8 @@ public class Player {
             } else {
                 if(numWanted > board.getRowThree()){
                     System.out.println("That's more than are in the row, pick again");
+                } else if(numWanted == 0){
+                    System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
                     takenGood = true;

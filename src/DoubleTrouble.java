@@ -28,6 +28,7 @@ public class DoubleTrouble {
                 System.out.println("Not a valid input, please try again");
             }
         }
+        System.out.println("Starting configuration:");
         theBoard.printBoard();
         while(theBoard.numLeft > 0){
             if(playerOne.equals("player")){
