@@ -39,6 +39,7 @@ public class DoubleTrouble {
 
         // begin main game loop
         while(theBoard.getNumLeft() > 0){
+            // for the case where player goes first
             if(playerOne.equals("player")){
                 // handle player input and update the board accordingly
                 if(!theBoard.checkWin()) {
@@ -57,6 +58,7 @@ public class DoubleTrouble {
                         winner += playerTwo;
                     }
                 }
+            // for the case where the computer goes first
             } else {
                 // create computer input and update the board accordingly
                 if(!theBoard.checkWin()) {
