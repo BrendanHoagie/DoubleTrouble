@@ -2,9 +2,17 @@ import java.util.Scanner;
 
 public class Player {
 
+    // main player function - handles user input and makes a move using that input
     void runPlayer(Board board){
-        Scanner playerIn = new Scanner(System.in);
         System.out.println("Player, your turn!");
+        int chosenRow = chooseRow(board);
+        int numTaken = choseNumTaken(board, chosenRow);
+        board.makeAMove(chosenRow, numTaken);
+    }
+
+    // handle row input and ensure that input follows all game rules
+    int chooseRow(Board board){
+        Scanner playerIn = new Scanner(System.in);
         int chosenRowNum = 0;
         Boolean rowNumGood = false;
         while(!rowNumGood){
@@ -35,13 +43,18 @@ public class Player {
                 System.out.println("Not a valid row, choose again");
             }
         }
+        return chosenRowNum;
+    }
 
+    // handle token input and ensures that the player follows all game rules
+    int choseNumTaken(Board board, int chosenRow){
+        Scanner playerIn = new Scanner(System.in);
         int numTaken = 0;
         Boolean takenGood = false;
         while(!takenGood){
             System.out.println("How many would you like to take?");
             int numWanted = Integer.parseInt(playerIn.nextLine());
-            if(chosenRowNum == 1){
+            if(chosenRow == 1){
                 if(numWanted > board.getRowOne()){
                     System.out.println("That's more than are in the row, pick again");
                 } else if(numWanted == 0){
@@ -50,7 +63,7 @@ public class Player {
                     numTaken = numWanted;
                     takenGood = true;
                 }
-            } else if(chosenRowNum == 2){
+            } else if(chosenRow == 2){
                 if(numWanted > board.getRowTwo()){
                     System.out.println("That's more than are in the row, pick again");
                 } else if(numWanted == 0){
@@ -70,6 +83,6 @@ public class Player {
                 }
             }
         }
-        board.makeAMove(chosenRowNum, numTaken);
+        return numTaken;
     }
 }

@@ -1,11 +1,13 @@
 public class Computer {
 
+    // main computer function - makes a move with a random row and number of tokens
     void runComputer(Board board){
         int row = chooseRandRow(board);
         int tokens = chooseRandNumTokens(row, board);
         board.makeAMove(row, tokens);
     }
 
+    // chooses a random row and ensures that it follows all game rules
     int chooseRandRow(Board board){
         int returnVal = 1;
         int min = 1;
@@ -30,6 +32,7 @@ public class Computer {
         return returnVal;
     }
 
+    // chooses a random number of tokens in the chosen row and ensures that it follows all game rules
     int chooseRandNumTokens(int rowNum, Board board){
         int min = 1;
         int max = 0;

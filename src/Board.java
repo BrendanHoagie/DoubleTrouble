@@ -1,22 +1,22 @@
 public class Board {
 
-    int rowOne = 3;
-    int rowTwo = 5;
-    int rowThree = 7;
-    int numLeft = rowOne + rowTwo + rowThree;
+    // private variables representing the number of tokens left in each row
+    private int rowOne = 3;
+    private int rowTwo = 5;
+    private int rowThree = 7;
+    private int numLeft = rowOne + rowTwo + rowThree;
 
-    int getRowOne(){
-        return rowOne;
-    }
-
+    // getters for each variable
+    int getRowOne() { return rowOne; }
     int getRowTwo(){
         return rowTwo;
     }
-
     int getRowThree(){
         return rowThree;
     }
+    int getNumLeft() { return numLeft; }
 
+    // prints the board according to the numbers of available tokens in a row
     void printBoard(){
         String lineOne = "";
         String lineTwo = "";
@@ -29,6 +29,7 @@ public class Board {
         System.out.println(lineThree);
     }
 
+    // updates the tokens in a line according to the number of tokens taken
     String updateLines(String input, int lineNum, int rowLength){
         int originalLineLength;
 
@@ -50,6 +51,7 @@ public class Board {
         return input;
     }
 
+    // allows a player or computer to make a move and updates the board information
     void makeAMove(int rowNum, int numTaken){
         if(rowNum == 1){
             rowOne = rowOne - numTaken;
@@ -63,10 +65,12 @@ public class Board {
         }
     }
 
+    // update the number of total tokens available
     void updateNumLeft(){
         numLeft = rowOne + rowTwo + rowThree;
     }
 
+    // check if all tokens have been taken
     boolean checkWin(){
         if(numLeft == 0){
             return true;
