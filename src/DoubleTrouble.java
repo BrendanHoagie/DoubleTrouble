@@ -39,11 +39,11 @@ public class DoubleTrouble {
             while (!goodInput) {
                 System.out.println("Who should go first, player one or player two?\nType 1 for player one or 2 for player two");
                 String determineFirst = input.nextLine();
-                if (determineFirst.equals("1") || determineFirst.equals("one") || determineFirst.equals("one")) {
+                if (determineFirst.equals("1") || determineFirst.equals("one") || determineFirst.equals("One")) {
                     goodInput = true;
                     playerOne = "player one";
                     playerTwo = "player two";
-                } else if (determineFirst.equals("2") || determineFirst.equals("two") || determineFirst.equals("two")) {
+                } else if (determineFirst.equals("2") || determineFirst.equals("two") || determineFirst.equals("Two")) {
                     goodInput = true;
                     playerOne = "player two";
                     playerTwo = "player one";
