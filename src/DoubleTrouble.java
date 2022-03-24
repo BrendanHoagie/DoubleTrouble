@@ -37,48 +37,49 @@ public class DoubleTrouble {
         System.out.println("Starting configuration:");
         theBoard.printBoard();
 
-        // begin main game loop
-        while(theBoard.getNumLeft() > 0){
-            // for the case where player goes first
+        // begin main game loop for the case where player goes first
             if(playerOne.equals("player")){
-                // handle player input and update the board accordingly
-                if(!theBoard.checkWin()) {
-                    human.runPlayer(theBoard);
-                    theBoard.printBoard();
-                    if (theBoard.checkWin()) {
-                        winner += playerOne;
+                while(theBoard.getNumLeft() > 0) {
+                    // handle player input and update the board accordingly
+                    if (!theBoard.checkWin()) {
+                        human.runPlayer(theBoard);
+                        theBoard.printBoard();
+                        if (theBoard.checkWin()) {
+                            winner += playerOne;
+                        }
+                    }
+                    // create computer input and update the board accordingly
+                    if (!theBoard.checkWin()) {
+                        System.out.println("\ncomputer's turn!");
+                        computer.runComputer(theBoard);
+                        theBoard.printBoard();
+                        if (theBoard.checkWin()) {
+                            winner += playerTwo;
+                        }
                     }
                 }
-                // create computer input and update the board accordingly
-                if(!theBoard.checkWin()) {
-                    System.out.println("\ncomputer's turn!");
-                    computer.runComputer(theBoard);
-                    theBoard.printBoard();
-                    if (theBoard.checkWin()) {
-                        winner += playerTwo;
-                    }
-                }
-            // for the case where the computer goes first
+            // begin main game loop for the case where the computer goes first
             } else {
-                // create computer input and update the board accordingly
-                if(!theBoard.checkWin()) {
-                    System.out.println("\ncomputer's turn!");
-                    computer.runComputer(theBoard);
-                    theBoard.printBoard();
-                    if (theBoard.checkWin()) {
-                        winner += playerOne;
+                while(theBoard.getNumLeft() > 0) {
+                    // create computer input and update the board accordingly
+                    if (!theBoard.checkWin()) {
+                        System.out.println("\ncomputer's turn!");
+                        computer.runComputer(theBoard);
+                        theBoard.printBoard();
+                        if (theBoard.checkWin()) {
+                            winner += playerOne;
+                        }
                     }
-                }
-                // handle player input and update the board accordingly
-                if(!theBoard.checkWin()) {
-                    human.runPlayer(theBoard);
-                    theBoard.printBoard();
-                    if (theBoard.checkWin()) {
-                        winner += playerTwo;
+                    // handle player input and update the board accordingly
+                    if (!theBoard.checkWin()) {
+                        human.runPlayer(theBoard);
+                        theBoard.printBoard();
+                        if (theBoard.checkWin()) {
+                            winner += playerTwo;
+                        }
                     }
                 }
             }
-        }
         // declare the winner at the end of the game
         System.out.println("\nThe winner is " + winner);
     }
