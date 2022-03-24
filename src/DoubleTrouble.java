@@ -34,7 +34,7 @@ public class DoubleTrouble {
             }
         }
 
-        // decide who should go first
+        // decide who should go first: P1, P2, or Computer
         if (pTwoExists) {
             while (!goodInput) {
                 System.out.println("Who should go first, player one or player two?\nType 1 for player one or 2 for player two");

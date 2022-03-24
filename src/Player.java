@@ -44,7 +44,6 @@ public class Player {
         }
         return chosenRowNum;
     }
-
     // handle token input and ensures that the player follows all game rules
     int choseNumTaken(Board board, int chosenRow){
         Scanner playerIn = new Scanner(System.in);
