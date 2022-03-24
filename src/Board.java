@@ -20,16 +20,16 @@ public class Board {
         String lineOne = "";
         String lineTwo = "";
         String lineThree = "";
-        lineOne = updateLines(lineOne, 1, rowOne);
+        lineOne = updateLines(lineOne, 1, rowOne,"X");
         System.out.println("  " +lineOne);
-        lineTwo = updateLines(lineTwo, 2, rowTwo);
+        lineTwo = updateLines(lineTwo, 2, rowTwo, "X");
         System.out.println(" " + lineTwo);
-        lineThree = updateLines(lineThree, 3, rowThree);
+        lineThree = updateLines(lineThree, 3, rowThree, "X");
         System.out.println(lineThree);
     }
 
     // updates the tokens in a line according to the number of tokens taken
-    String updateLines(String input, int lineNum, int rowLength){
+    String updateLines(String input, int lineNum, int rowLength, String marker){
         int originalLineLength;
 
         if(lineNum == 1){
@@ -42,7 +42,7 @@ public class Board {
 
         for(int i = 0; i < originalLineLength; i++){
             if(i < rowLength){
-                input += "X";
+                input += marker;
             } else {
                 input += "0";
             }
