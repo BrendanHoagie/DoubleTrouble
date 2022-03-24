@@ -11,10 +11,9 @@ public class Board {
     int getRowTwo(){
         return rowTwo;
     }
-    int getRowThree(){
-        return rowThree;
-    }
+    int getRowThree(){ return rowThree; }
     int getNumLeft() { return numLeft; }
+
 
     // prints the board according to the numbers of available tokens in a row
     void printBoard(){

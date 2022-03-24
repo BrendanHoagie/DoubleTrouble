@@ -1,7 +1,160 @@
+import java.util.LinkedList;
+
 public class Computer {
 
-    // main computer function - makes a move with a random row and number of tokens
-    void runComputer(Board board){
+    // main computer function
+    void runComputer(Board board) {
+
+        // board values
+        int firstRow = board.getRowOne();
+        int secondRow = board.getRowTwo();
+        int thirdRow = board.getRowThree();
+        int largestRow = largestOf(firstRow, secondRow, thirdRow);
+
+        // calculate the nim sum of the board
+        int nimSum = firstRow ^ secondRow ^ thirdRow;
+
+        // if we have an unpaired multiple (only one row has a 4 bit
+        // or no row has a 4 bit and only one row has a 2 bit)
+        // in the XOR addition - we need to find the right move
+        // ex- 1/2/5 has a nim sum of 6, but we can't
+        // take 6 from any row because the largest possible row has 5
+        if(anySingleMultiples(board, 4) || (anySingleMultiples(board, 2) && !anySingleMultiples(board, 4))){
+            boolean foundSum = false;
+            int originalLargestRow = largestRow;
+            int rowWanted = 0;
+            if(largestRow == firstRow){
+                rowWanted = 1;
+            } else if(largestRow == secondRow){
+                rowWanted = 2;
+            } else {
+                rowWanted = 3;
+            }
+
+            // we can take away one each time from the largest row
+            // until we find a nim sum that equals 0
+            while(!foundSum){
+                largestRow--;
+                int foundNimSum = 0;
+                if(rowWanted == 1){
+                    int guess = largestRow ^ secondRow ^ thirdRow;
+                    if(guess == 0){
+                        foundSum = true;
+                        int tokensWanted = originalLargestRow - largestRow;
+                        board.makeAMove(rowWanted, tokensWanted);
+                    }
+                } else if(rowWanted == 2){
+                    int guess = firstRow ^ largestRow ^ thirdRow;
+                    if(guess == 0){
+                        foundSum = true;
+                        int tokensWanted = originalLargestRow - largestRow;
+                        board.makeAMove(rowWanted, tokensWanted);
+                    }
+                } else if(rowWanted == 3){
+                    int guess = firstRow ^ secondRow ^ largestRow;
+                    if(guess == 0){
+                        foundSum = true;
+                        int tokensWanted = originalLargestRow - largestRow;
+                        board.makeAMove(rowWanted, tokensWanted);
+                    }
+                }
+            }
+        } else {
+
+            // check if the computer is in losing position and
+            // make a random move if it is
+            if (nimSum == 0) {
+                runRandComputer(board);
+            }
+
+            // we need to make the moves such that the nim sum is 0 for player
+            else {
+                int tokensWanted = nimSum;
+                int rowNum = 0;
+                LinkedList<Integer> triedList = new LinkedList<Integer>();
+                boolean rowGood = false;
+                // we know how many we want to take away, but we need to search
+                // for the correct row to take from.
+                // ex 1/4/4 needs 1 token removed, but removing from anything except
+                // the first row doesn't put the opponent in losing position
+                // so we need to continue searching for the right row if we pick rows 2 or 3
+                while (!rowGood) {
+                    // first step is choose a random row such that games are different from each other
+                    int tryRow = chooseRandRow(board);
+                    if (!triedList.contains(tryRow)) {
+                        if (tryRow == 1) {
+                            int changedFirst = firstRow - tokensWanted;
+                            if (changedFirst < 0) {
+                                triedList.add(tryRow);
+                            } else {
+                                int newNimSum = changedFirst ^ secondRow ^ thirdRow;
+                                if (newNimSum == 0) {
+                                    rowGood = true;
+                                    board.makeAMove(tryRow, tokensWanted);
+                                } else {
+                                    triedList.add(tryRow);
+                                }
+                            }
+                        } else if (tryRow == 2) {
+                            int changedSecond = secondRow - tokensWanted;
+                            if (changedSecond < 0) {
+                                triedList.add(tryRow);
+                            } else {
+                                int newNimSum = firstRow ^ changedSecond ^ thirdRow;
+                                if (newNimSum == 0) {
+                                    rowGood = true;
+                                    board.makeAMove(tryRow, tokensWanted);
+                                } else {
+                                    triedList.add(tryRow);
+                                }
+                            }
+                        } else if (tryRow == 3) {
+                            int changedThird = thirdRow - tokensWanted;
+                            if (changedThird < 0) {
+                                triedList.add(tryRow);
+                            } else {
+                                int newNimSum = firstRow ^ secondRow ^ changedThird;
+                                if (newNimSum == 0) {
+                                    rowGood = true;
+                                    board.makeAMove(tryRow, tokensWanted);
+                                } else {
+                                    triedList.add(tryRow);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // finds if there are any multiples without pairs, which could cause
+    // issues with the way tokens are calculated
+    boolean anySingleMultiples(Board board, int multiple){
+        int rOne = board.getRowOne();
+        int rTwo = board.getRowTwo();
+        int rThree = board.getRowThree();
+        if(rOne >= multiple && ((rTwo < multiple) && (rThree < multiple))){
+            return true;
+        } else if(rTwo >= multiple && ((rOne < multiple) && (rThree < multiple))){
+            return true;
+        } else if(rThree >= multiple && ((rTwo < multiple) && (rOne < multiple))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    int largestOf(int a, int b, int c){
+        int largestRow = 0;
+        if(a > largestRow){ largestRow = a; }
+        if(b > largestRow){ largestRow = b;}
+        if(c > largestRow){largestRow = c;}
+        return largestRow;
+    }
+
+    // make a random move, no strategy
+    void runRandComputer(Board board){
         int row = chooseRandRow(board);
         int tokens = chooseRandNumTokens(row, board);
         board.makeAMove(row, tokens);

@@ -62,7 +62,7 @@ public class DoubleTrouble {
             } else {
                 // create computer input and update the board accordingly
                 if(!theBoard.checkWin()) {
-                    System.out.println("computer's turn!");
+                    System.out.println("\ncomputer's turn!");
                     computer.runComputer(theBoard);
                     theBoard.printBoard();
                     if (theBoard.checkWin()) {
@@ -80,6 +80,6 @@ public class DoubleTrouble {
             }
         }
         // declare the winner at the end of the game
-        System.out.println("The winner is " + winner);
+        System.out.println("\nThe winner is " + winner);
     }
 }

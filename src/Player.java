@@ -4,7 +4,7 @@ public class Player {
 
     // main player function - handles user input and makes a move using that input
     void runPlayer(Board board){
-        System.out.println("Player, your turn!");
+        System.out.println("\nPlayer, your turn!");
         int chosenRow = chooseRow(board);
         int numTaken = choseNumTaken(board, chosenRow);
         board.makeAMove(chosenRow, numTaken);
