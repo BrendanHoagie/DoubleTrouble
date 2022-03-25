@@ -21,7 +21,7 @@ public class DoubleTrouble {
 
         //single player or multiplayer
         while (!gameplayChosen) {
-            System.out.println("Are you playing in single player mode or multiplayer mode?\nType s for single player or m for multiplayer");
+            System.out.println("Are you playing in single player mode against the computer or multiplayer mode?\nType s for single player or m for multiplayer");
             String determineFirst = input.nextLine();
             if (determineFirst.equals("s") || determineFirst.equals("S")) {
                 gameplayChosen = true;
