@@ -55,7 +55,7 @@ public class Player {
             if(chosenRow == 1){
                 if(numWanted > board.getRowOne()){
                     System.out.println("That's more than are in the row, pick again");
-                } else if(numWanted == 0){
+                } else if(numWanted <= 0){
                     System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
@@ -64,7 +64,7 @@ public class Player {
             } else if(chosenRow == 2){
                 if(numWanted > board.getRowTwo()){
                     System.out.println("That's more than are in the row, pick again");
-                } else if(numWanted == 0){
+                } else if(numWanted <= 0){
                     System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
@@ -73,7 +73,7 @@ public class Player {
             } else {
                 if(numWanted > board.getRowThree()){
                     System.out.println("That's more than are in the row, pick again");
-                } else if(numWanted == 0){
+                } else if(numWanted <= 0){
                     System.out.println("You have to pick at least 1 token");
                 } else {
                     numTaken = numWanted;
