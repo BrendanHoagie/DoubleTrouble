@@ -8,9 +8,7 @@ public class Board {
 
     // getters for each variable
     public int getRowOne() { return rowOne; }
-    public int getRowTwo(){
-        return rowTwo;
-    }
+    public int getRowTwo(){ return rowTwo; }
     public int getRowThree(){ return rowThree; }
     public int getNumLeft() { return numLeft; }
 
@@ -65,9 +63,7 @@ public class Board {
     }
 
     // update the number of total tokens available
-    public void updateNumLeft(){
-        numLeft = rowOne + rowTwo + rowThree;
-    }
+    public void updateNumLeft(){ numLeft = rowOne + rowTwo + rowThree; }
 
     // check if all tokens have been taken
     public boolean checkWin(){
