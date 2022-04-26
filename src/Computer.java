@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class Computer {
 
     // main computer function
-    void runComputer(Board board) {
+    public void runComputer(Board board) {
 
         // board values
         int firstRow = board.getRowOne();
@@ -133,7 +133,7 @@ public class Computer {
 
     // finds if there are any multiples without pairs, which could cause
     // issues with the way tokens are calculated
-    boolean anySingleMultiples(Board board, int multiple) {
+    public boolean anySingleMultiples(Board board, int multiple) {
         int rOne = board.getRowOne();
         int rTwo = board.getRowTwo();
         int rThree = board.getRowThree();
@@ -144,7 +144,7 @@ public class Computer {
         } else return rThree >= multiple && ((rTwo < multiple) && (rOne < multiple));
     }
 
-    int largestOf(int a, int b, int c) {
+    public int largestOf(int a, int b, int c) {
         int largestRow = 0;
         if (a > largestRow) {
             largestRow = a;
@@ -159,14 +159,14 @@ public class Computer {
     }
 
     // make a random move, no strategy
-    void runRandComputer(Board board) {
+    public void runRandComputer(Board board) {
         int row = chooseRandRow(board);
         int tokens = chooseRandNumTokens(row, board);
         board.makeAMove(row, tokens);
     }
 
     // chooses a random row and ensures that it follows all game rules
-    int chooseRandRow(Board board) {
+    public int chooseRandRow(Board board) {
         int returnVal = 1;
         int min = 1;
         int max = 3;
@@ -191,7 +191,7 @@ public class Computer {
     }
 
     // chooses a random number of tokens in the chosen row and ensures that it follows all game rules
-    int chooseRandNumTokens(int rowNum, Board board) {
+    public int chooseRandNumTokens(int rowNum, Board board) {
         int min = 1;
         int max = 0;
         if (rowNum == 1) {

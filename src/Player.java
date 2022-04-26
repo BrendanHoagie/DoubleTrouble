@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class Player {
 
     // main player function - handles user input and makes a move using that input
-    void runPlayer(Board board){
+    public void runPlayer(Board board){
         int chosenRow = chooseRow(board);
         int numTaken = choseNumTaken(board, chosenRow);
         board.makeAMove(chosenRow, numTaken);
     }
 
     // handle row input and ensure that input follows all game rules
-    int chooseRow(Board board){
+    public int chooseRow(Board board){
         Scanner playerIn = new Scanner(System.in);
         int chosenRowNum = 0;
         Boolean rowNumGood = false;
@@ -45,7 +45,7 @@ public class Player {
         return chosenRowNum;
     }
     // handle token input and ensures that the player follows all game rules
-    int choseNumTaken(Board board, int chosenRow){
+    public int choseNumTaken(Board board, int chosenRow){
         Scanner playerIn = new Scanner(System.in);
         int numTaken = 0;
         Boolean takenGood = false;
