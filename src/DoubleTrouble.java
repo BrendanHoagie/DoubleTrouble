@@ -10,8 +10,8 @@ public class DoubleTrouble {
         Computer computer = new Computer();
 
         // create global variables
-        Boolean goodInput = false;
-        Boolean gameplayChosen = false;
+        boolean goodInput = false;
+        boolean gameplayChosen = false;
         boolean pTwoExists = false;
         String playerOne = "";
         String playerTwo = "";
